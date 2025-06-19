@@ -7,10 +7,7 @@ import ru.yandex.practicum.catsgram.exception.NotFoundException;
 import ru.yandex.practicum.catsgram.model.Post;
 
 import java.time.Instant;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Service
@@ -38,11 +35,11 @@ public class PostService {
         }
     }
 
-    public Post findPost(Long id) {
+    public Optional<Post> findById(Long id) {
         if (id == null || !posts.containsKey(id)) {
             throw new NotFoundException("Пост не найден.");
         } else {
-            return posts.get(id);
+            return Optional.of(posts.get(id));
         }
     }
 
